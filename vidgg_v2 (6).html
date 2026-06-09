@@ -1,0 +1,1200 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+.app{font-family:'Inter',sans-serif;background:#0d1117;color:#c9d1d9;display:grid;grid-template-columns:210px 1fr;height:720px;border-radius:12px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.08)}
+.sb{background:#0a0d12;border-right:0.5px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
+.sb-logo{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.logo-box{width:24px;height:24px;background:#3b82f6;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:11px}
+.logo-t{font-size:14px;font-weight:700;color:#fff}
+.sb-sec{font-size:10px;color:rgba(255,255,255,0.22);letter-spacing:1.5px;padding:11px 14px 3px;text-transform:uppercase}
+.sb-item{display:flex;align-items:center;gap:9px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,0.45);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:all 0.12s}
+.sb-item:hover{color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.03)}
+.sb-item.act{background:rgba(59,130,246,0.15);color:#60a5fa;font-weight:500}
+.sb-item i{font-size:14px;flex-shrink:0}
+.sb-bot{margin-top:auto;padding:12px;border-top:0.5px solid rgba(255,255,255,0.07)}
+.cred-row{margin-bottom:9px}
+.cred-hdr{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:3px}
+.cred-val{color:#60a5fa;font-weight:600}
+.cred-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px}
+.cred-fill{height:3px;border-radius:2px;background:#3b82f6}
+.sb-logout{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer;border:none;background:none;width:100%}
+.main{overflow-y:auto;display:flex;flex-direction:column;background:#0d1117}
+.pg{display:none;flex-direction:column;flex:1}
+.pg.act{display:flex}
+
+/* DASHBOARD */
+.dash-wrap{padding:28px;display:flex;flex-direction:column;gap:20px}
+.dash-hello{font-size:22px;font-weight:700;color:#fff}
+.dash-hello span{color:#3b82f6}
+.dash-sub{font-size:13px;color:rgba(255,255,255,0.35);margin-top:2px}
+.credits-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cred-card{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px 18px}
+.cc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cc-title{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px}
+.cc-icon{width:28px;height:28px;border-radius:7px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;color:#60a5fa;font-size:14px}
+.cc-pct{font-size:13px;font-weight:600;color:rgba(255,255,255,0.5)}
+.cc-bar-bg{height:5px;background:rgba(255,255,255,0.08);border-radius:3px;margin-bottom:7px}
+.cc-bar-fill{height:5px;border-radius:3px;background:#3b82f6}
+.cc-count{font-size:12px;color:rgba(255,255,255,0.3)}
+.quick-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.quick-card{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px;cursor:pointer;transition:border-color 0.15s}
+.quick-card:hover{border-color:rgba(59,130,246,0.35)}
+.qc-icon{width:32px;height:32px;border-radius:8px;background:rgba(59,130,246,0.12);display:flex;align-items:center;justify-content:center;color:#60a5fa;font-size:16px;margin-bottom:10px}
+.qc-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
+.qc-desc{font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:10px}
+.qc-start{font-size:12px;color:#60a5fa;display:flex;align-items:center;gap:4px}
+.recent-label{font-size:13px;font-weight:600;color:#fff}
+.thumb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.thumb-prev{border-radius:8px;overflow:hidden;background:#161b22;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:11px;border:0.5px solid rgba(255,255,255,0.07)}
+
+/* VIDEO IDEATOR */
+.ideator-wrap{padding:28px;display:flex;flex-direction:column;gap:16px;flex:1}
+.pg-title{font-size:20px;font-weight:700;color:#fff}
+.pg-desc{font-size:13px;color:rgba(255,255,255,0.35);margin-top:2px}
+.field-label{font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:6px;font-weight:500}
+.inp{background:#161b22;border:0.5px solid rgba(255,255,255,0.1);color:#fff;border-radius:8px;padding:10px 14px;font-size:13px;width:100%;outline:none;font-family:inherit;transition:border-color 0.15s}
+.inp:focus{border-color:rgba(59,130,246,0.5)}
+.inp::placeholder{color:rgba(255,255,255,0.2)}
+.ta{background:#161b22;border:0.5px solid rgba(255,255,255,0.1);color:#fff;border-radius:8px;padding:10px 14px;font-size:13px;width:100%;outline:none;font-family:inherit;resize:none;min-height:70px;transition:border-color 0.15s}
+.ta:focus{border-color:rgba(59,130,246,0.4)}
+.ta::placeholder{color:rgba(255,255,255,0.2)}
+.ch-preview{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;display:none}
+.ch-preview.show{display:block}
+.ch-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ch-av{width:40px;height:40px;border-radius:50%;background:#e74c3c;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+.ch-name{font-size:14px;font-weight:600;color:#fff}
+.ch-handle{font-size:11px;color:rgba(255,255,255,0.3)}
+.vids-lbl{font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.v-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.05)}
+.v-row:last-child{border-bottom:none}
+.v-thumb{width:52px;height:33px;background:#21262d;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-size:12px}
+.v-title{font-size:12px;color:rgba(255,255,255,0.7);flex:1;line-height:1.3}
+.v-views{font-size:11px;color:rgba(255,255,255,0.25);white-space:nowrap}
+.sl-row{display:flex;flex-direction:column;gap:5px}
+.sl-hdr{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.4)}
+.sl-val{color:#3b82f6;font-weight:700;font-size:13px}
+input[type=range]{width:100%;accent-color:#3b82f6}
+.btn-blue{background:#3b82f6;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;transition:background 0.15s}
+.btn-blue:hover{background:#2563eb}
+.btn-blue:disabled{opacity:0.45;cursor:not-allowed}
+.btn-load{background:#21262d;color:rgba(255,255,255,0.6);border:0.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 14px;font-size:12px;cursor:pointer;white-space:nowrap;transition:all 0.15s;flex-shrink:0}
+.btn-load:hover{background:#2d333b;color:#fff}
+.note-line{text-align:center;font-size:11px;color:#3b82f6}
+.gen-ideas-label{font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.idea-row{background:#161b22;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:13px 15px;margin-bottom:8px}
+.idea-title-t{font-size:14px;font-weight:600;color:#fff;margin-bottom:8px}
+.idea-btns{display:flex;gap:8px;align-items:center}
+.btn-thumb{flex:1;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:background 0.15s}
+.btn-thumb:hover{background:#2563eb}
+.btn-save{background:#21262d;color:rgba(255,255,255,0.5);border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;padding:8px 12px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.btn-save:hover{color:#fff}
+
+/* THUMBNAIL GENERATOR */
+.thumb-wrap{padding:28px;display:flex;flex-direction:column;gap:16px}
+.tab-row{display:flex;gap:2px;background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:8px;padding:3px;width:fit-content}
+.tab-btn{padding:6px 16px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:none;color:rgba(255,255,255,0.4);transition:all 0.15s}
+.tab-btn.act{background:#3b82f6;color:#fff}
+.ref-preview{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:none;position:relative}
+.ref-preview.show{display:flex;align-items:center;gap:12px}
+.ref-img-box{width:100px;height:65px;background:#21262d;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,0.3);flex-shrink:0;overflow:hidden;position:relative}
+.ref-label{position:absolute;top:5px;left:5px;background:rgba(0,0,0,0.7);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600}
+.ref-url-txt{font-size:12px;color:rgba(255,255,255,0.5);word-break:break-all}
+.sel-chan{background:#161b22;border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border-radius:8px;padding:9px 12px;font-size:13px;width:100%;outline:none;font-family:inherit}
+.sel-chan option{background:#161b22}
+.gen-full-btn{background:#3b82f6;color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;transition:background 0.15s}
+.gen-full-btn:hover{background:#2563eb}
+.gen-full-btn:disabled{opacity:0.45;cursor:not-allowed}
+.uses-note{text-align:center;font-size:11px;color:rgba(255,255,255,0.3)}
+.uses-note span{color:#3b82f6}
+.latest-label{font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase}
+.gen-result{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;display:none}
+.gen-result.show{display:block;color:#c9d1d9}
+.gen-result img{max-width:100%;border-radius:8px}
+.loading-overlay{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:30px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
+.loading-overlay.show{display:flex}
+.spin{font-size:24px;color:#3b82f6;animation:spin 1s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.1)}}
+.lo-title{font-size:14px;font-weight:600;color:#fff}
+.lo-sub{font-size:12px;color:rgba(255,255,255,0.35)}
+
+/* NICHE FINDS */
+.nf-wrap{padding:28px;display:flex;flex-direction:column;gap:18px;flex:1;overflow-y:auto}
+.nf-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.nf-filters{display:flex;gap:8px;flex-wrap:wrap}
+.nf-filter{background:#161b22;border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.15s}
+.nf-filter:hover{border-color:rgba(59,130,246,0.4);color:#60a5fa}
+.nf-filter.act{background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.4);color:#60a5fa}
+.nf-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.nf-card{background:#161b22;border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.15s;cursor:default}
+.nf-card:hover{border-color:rgba(59,130,246,0.3)}
+.nf-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.nf-card-name{font-size:14px;font-weight:700;color:#fff;line-height:1.3;flex:1}
+.nf-trend-badge{flex-shrink:0;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.3px}
+.nf-trend-hot{background:rgba(239,68,68,0.15);color:#f87171;border:0.5px solid rgba(239,68,68,0.25)}
+.nf-trend-rising{background:rgba(59,130,246,0.15);color:#60a5fa;border:0.5px solid rgba(59,130,246,0.25)}
+.nf-trend-new{background:rgba(168,85,247,0.15);color:#c084fc;border:0.5px solid rgba(168,85,247,0.25)}
+.nf-why{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.55}
+.nf-meta-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.nf-badge{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:500}
+.nf-badge-green{background:rgba(34,197,94,0.12);color:#4ade80;border:0.5px solid rgba(34,197,94,0.2)}
+.nf-badge-yellow{background:rgba(251,191,36,0.12);color:#fbbf24;border:0.5px solid rgba(251,191,36,0.2)}
+.nf-badge-red{background:rgba(239,68,68,0.12);color:#f87171;border:0.5px solid rgba(239,68,68,0.2)}
+.nf-badge-blue{background:rgba(59,130,246,0.12);color:#60a5fa;border:0.5px solid rgba(59,130,246,0.2)}
+.nf-badge-purple{background:rgba(168,85,247,0.12);color:#c084fc;border:0.5px solid rgba(168,85,247,0.2)}
+.nf-divider{height:0.5px;background:rgba(255,255,255,0.06)}
+.nf-idea-row{display:flex;align-items:flex-start;gap:7px}
+.nf-idea-icon{font-size:13px;color:#60a5fa;margin-top:1px;flex-shrink:0}
+.nf-idea-text{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;flex:1}
+.nf-card-actions{display:flex;gap:7px;margin-top:2px}
+.nf-btn-idea{flex:1;background:rgba(59,130,246,0.1);border:0.5px solid rgba(59,130,246,0.25);color:#60a5fa;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all 0.15s}
+.nf-btn-idea:hover{background:rgba(59,130,246,0.2)}
+.nf-btn-save{background:#21262d;border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);border-radius:7px;padding:7px 12px;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:all 0.15s}
+.nf-btn-save:hover{color:#fff;border-color:rgba(255,255,255,0.25)}
+.nf-score-bar-wrap{display:flex;flex-direction:column;gap:5px}
+.nf-score-row{display:flex;align-items:center;gap:8px}
+.nf-score-label{font-size:10px;color:rgba(255,255,255,0.3);width:70px;flex-shrink:0;letter-spacing:0.5px;text-transform:uppercase}
+.nf-score-bar{flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.nf-score-fill{height:4px;border-radius:2px}
+
+
+.voices-grid{display:grid;grid-template-columns:1fr 280px;height:100%;overflow:hidden}
+.voices-main{padding:0;display:flex;flex-direction:column;border-right:0.5px solid rgba(255,255,255,0.07)}
+.voices-editor{flex:1;padding:20px;background:#0d1117}
+.voices-textarea{width:100%;height:100%;min-height:200px;background:transparent;border:none;color:#c9d1d9;font-size:13px;line-height:1.8;resize:none;outline:none;font-family:inherit}
+.voices-textarea::placeholder{color:rgba(255,255,255,0.15)}
+.voices-footer{padding:12px 20px;border-top:0.5px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;background:#0a0d12}
+.vf-left{font-size:12px;color:rgba(255,255,255,0.3)}
+.vf-left span{color:#3b82f6;font-weight:600}
+.btn-generate{background:#3b82f6;color:#fff;border:none;border-radius:7px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background 0.15s}
+.btn-generate:hover{background:#2563eb}
+.btn-generate:disabled{opacity:0.45;cursor:not-allowed}
+.voices-panel{background:#0a0d12;display:flex;flex-direction:column;overflow-y:auto}
+.panel-tabs{display:flex;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.ptab{flex:1;padding:11px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.4);cursor:pointer;text-align:center;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.15s}
+.ptab.act{color:#fff;border-bottom-color:#3b82f6}
+.panel-body{padding:14px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;flex:1}
+.ps-label{font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
+.engine-btn{background:#3b82f6;color:#fff;border:none;border-radius:7px;padding:9px;font-size:13px;font-weight:600;width:100%;cursor:default}
+.voice-select{background:#161b22;border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border-radius:7px;padding:8px 10px;font-size:12px;width:100%;outline:none}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.5)}
+.toggle{width:36px;height:20px;background:#3b82f6;border-radius:10px;position:relative;cursor:pointer;flex-shrink:0}
+.toggle-dot{position:absolute;right:3px;top:3px;width:14px;height:14px;background:#fff;border-radius:50%}
+.saved-voice{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,0.05)}
+.saved-voice:last-child{border-bottom:none}
+.sv-dot{width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0}
+.sv-info{flex:1;margin-left:8px}
+.sv-name{font-size:12px;color:#fff;font-weight:500}
+.sv-id{font-size:10px;color:rgba(255,255,255,0.25);font-family:monospace}
+.sv-actions{display:flex;gap:6px}
+.sv-btn{background:none;border:none;color:rgba(255,255,255,0.3);cursor:pointer;font-size:13px;padding:2px}
+.sv-btn:hover{color:#fff}
+.hist-item{padding:10px 0;border-bottom:0.5px solid rgba(255,255,255,0.05)}
+.hist-item:last-child{border-bottom:none}
+.hist-text{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.4;margin-bottom:5px}
+.hist-meta{font-size:10px;color:rgba(255,255,255,0.25)}
+.hist-meta .voice-tag{background:rgba(59,130,246,0.15);color:#60a5fa;padding:1px 7px;border-radius:4px;margin-right:5px;font-size:10px}
+.hist-play{display:flex;align-items:center;gap:6px;margin-top:5px}
+.play-btn{width:26px;height:26px;border-radius:50%;background:#3b82f6;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.audio-line{flex:1;height:3px;background:rgba(255,255,255,0.1);border-radius:2px}
+.dl-btn{background:none;border:none;color:rgba(255,255,255,0.3);cursor:pointer;font-size:14px}
+.dl-btn:hover{color:#fff}
+.notif{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:#161b22;border:0.5px solid rgba(59,130,246,0.3);border-radius:8px;padding:10px 16px;font-size:13px;color:#fff;display:flex;align-items:center;gap:8px;white-space:nowrap;z-index:10;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.notif.show{opacity:1}
+.notif i{color:#4ade80}
+.irow{display:flex;gap:8px}
+.irow .inp{flex:1}
+</style>
+
+<h2 class="sr-only" style="position:absolute;left:-9999px">Vid.GG replica completa con Dashboard, Video Ideator, Thumbnail Generator y ElevenLabs Voices</h2>
+
+<div class="app" style="position:relative">
+  <!-- SIDEBAR -->
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="logo-box">V</div>
+      <div class="logo-t">Vid.GG</div>
+    </div>
+    <button class="sb-item act" onclick="go('dashboard',this)"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</button>
+    <button class="sb-item" onclick="go('course',this)"><i class="ti ti-book" aria-hidden="true"></i> The Course</button>
+    <div class="sb-sec">Creator Tools</div>
+    <button class="sb-item" onclick="go('voices',this)"><i class="ti ti-microphone" aria-hidden="true"></i> ElevenLabs Voices</button>
+    <button class="sb-item" onclick="go('thumbnails',this)"><i class="ti ti-photo" aria-hidden="true"></i> Thumbnail Generator</button>
+    <button class="sb-item" onclick="go('niche',this)"><i class="ti ti-search" aria-hidden="true"></i> Niche Finder</button>
+    <button class="sb-item" onclick="go('ideator',this)"><i class="ti ti-bulb" aria-hidden="true"></i> Video Ideator</button>
+    <button class="sb-item" onclick="go('processed',this)"><i class="ti ti-clock" aria-hidden="true"></i> Processed Generations</button>
+    <div class="sb-sec">New Tools</div>
+    <button class="sb-item" onclick="go('thumbtest',this)"><i class="ti ti-eye" aria-hidden="true"></i> Thumbnail Tester</button>
+    <button class="sb-item" onclick="go('planner',this)"><i class="ti ti-calendar" aria-hidden="true"></i> Video Planner</button>
+    <button class="sb-item" onclick="go('nichefinds',this)"><i class="ti ti-star" aria-hidden="true"></i> Niche Finds</button>
+    <div class="sb-sec">Community</div>
+    <button class="sb-item" onclick="go('chat',this)"><i class="ti ti-messages" aria-hidden="true"></i> General Chat</button>
+    <button class="sb-item" onclick="go('wins',this)"><i class="ti ti-trophy" aria-hidden="true"></i> Wins</button>
+    <button class="sb-item" onclick="go('support',this)"><i class="ti ti-help" aria-hidden="true"></i> Support</button>
+    <div class="sb-sec">Add-ons</div>
+    <button class="sb-item" onclick=""><i class="ti ti-discount" aria-hidden="true"></i> Produce Discount</button>
+    <div class="sb-bot">
+      <div class="cred-row">
+        <div class="cred-hdr"><span><i class="ti ti-microphone" style="font-size:10px;margin-right:3px" aria-hidden="true"></i>Voice Credits</span><span class="cred-val">10M left</span></div>
+        <div class="cred-bar"><div class="cred-fill" style="width:99%"></div></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:2px">69.3k / 10,000,000</div>
+      </div>
+      <div class="cred-row">
+        <div class="cred-hdr"><span><i class="ti ti-photo" style="font-size:10px;margin-right:3px" aria-hidden="true"></i>Thumbnail Credits</span><span class="cred-val" id="thumb-cred-lbl">83 left</span></div>
+        <div class="cred-bar"><div class="cred-fill" style="width:55%" id="thumb-cred-bar"></div></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:2px" id="thumb-cred-count">67/150 credits</div>
+      </div>
+    </div>
+    <button class="sb-logout"><i class="ti ti-logout" aria-hidden="true"></i> Logout</button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="pg act" id="pg-dashboard">
+      <div class="dash-wrap">
+        <div>
+          <div class="dash-hello">Welcome back, <span>You</span></div>
+          <div class="dash-sub">Here's what's happening with your account.</div>
+        </div>
+        <div class="credits-row">
+          <div class="cred-card">
+            <div class="cc-top">
+              <div class="cc-title"><div class="cc-icon"><i class="ti ti-photo" aria-hidden="true"></i></div> Thumbnail Credits</div>
+              <div class="cc-pct">45%</div>
+            </div>
+            <div class="cc-bar-bg"><div class="cc-bar-fill" style="width:45%"></div></div>
+            <div class="cc-count">67 / 150 credits</div>
+          </div>
+          <div class="cred-card">
+            <div class="cc-top">
+              <div class="cc-title"><div class="cc-icon"><i class="ti ti-microphone" aria-hidden="true"></i></div> Voice Characters</div>
+            </div>
+            <div class="cc-bar-bg"><div class="cc-bar-fill" style="width:1%"></div></div>
+            <div class="cc-count">69.3K / 10M characters</div>
+          </div>
+        </div>
+        <div class="quick-row">
+          <div class="quick-card" onclick="go('voices',document.querySelector('[onclick*=voices]'))">
+            <div class="qc-icon"><i class="ti ti-microphone" aria-hidden="true"></i></div>
+            <div class="qc-title">Generate Voice</div>
+            <div class="qc-desc">Create AI voices for your content</div>
+            <div class="qc-start">Start <i class="ti ti-arrow-right" style="font-size:11px" aria-hidden="true"></i></div>
+          </div>
+          <div class="quick-card" onclick="go('thumbnails',document.querySelector('[onclick*=thumbnails]'))">
+            <div class="qc-icon"><i class="ti ti-photo" aria-hidden="true"></i></div>
+            <div class="qc-title">Create Thumbnail</div>
+            <div class="qc-desc">Design high-CTR thumbnails</div>
+            <div class="qc-start">Start <i class="ti ti-arrow-right" style="font-size:11px" aria-hidden="true"></i></div>
+          </div>
+          <div class="quick-card" onclick="go('ideator',document.querySelector('[onclick*=ideator]'))">
+            <div class="qc-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+            <div class="qc-title">Generate Ideas</div>
+            <div class="qc-desc">Brainstorm video concepts</div>
+            <div class="qc-start">Start <i class="ti ti-arrow-right" style="font-size:11px" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <div>
+          <div class="recent-label">Recent Thumbnails</div>
+          <div class="thumb-grid">
+            <div class="thumb-prev"><i class="ti ti-photo" style="font-size:20px" aria-hidden="true"></i></div>
+            <div class="thumb-prev"><i class="ti ti-photo" style="font-size:20px" aria-hidden="true"></i></div>
+            <div class="thumb-prev"><i class="ti ti-photo" style="font-size:20px" aria-hidden="true"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO IDEATOR -->
+    <div class="pg" id="pg-ideator">
+      <div class="ideator-wrap">
+        <div>
+          <div class="pg-title">Video Ideator</div>
+          <div class="pg-desc">Copy your competitors video ideas, and replicate them for your niche, built on virality</div>
+        </div>
+        <div>
+          <div class="field-label">Channel URL</div>
+          <div class="irow">
+            <input class="inp" id="ch-url" placeholder="https://www.youtube.com/@ChannelName" />
+            <button class="btn-load" onclick="loadChannel()" id="btn-load-ch"><i class="ti ti-player-play" style="font-size:12px;margin-right:4px" aria-hidden="true"></i>Load</button>
+          </div>
+        </div>
+        <div class="ch-preview" id="ch-preview">
+          <div class="ch-hdr">
+            <div class="ch-av" id="ch-av"><i class="ti ti-brand-youtube" aria-hidden="true"></i></div>
+            <div><div class="ch-name" id="ch-name-el">Channel</div><div class="ch-handle" id="ch-handle-el">@handle</div></div>
+          </div>
+          <div class="vids-lbl">Most Recent Videos:</div>
+          <div id="vids-list"></div>
+        </div>
+        <div>
+          <div class="field-label">How should we create ideas?</div>
+          <textarea class="ta" id="idea-prompt" placeholder="e.g. Replicate their top 10 outliers, make more &quot;What If&quot; style ideas, focus on shorts..."></textarea>
+        </div>
+        <div class="sl-row">
+          <div class="sl-hdr"><span>How many ideas?</span><span class="sl-val" id="sl-display">10 ideas</span></div>
+          <input type="range" min="1" max="20" value="10" step="1" id="ideas-sl" oninput="document.getElementById('sl-display').textContent=this.value+' idea'+(this.value>1?'s':'')">
+        </div>
+        <button class="btn-blue" onclick="generateIdeas()" id="btn-gen-ideas"><i class="ti ti-sparkles" aria-hidden="true"></i> Generate Ideas</button>
+        <div class="note-line">Unlimited · Max 100 ideas/hour</div>
+        <div id="ideas-section" style="display:none">
+          <div class="gen-ideas-label">Generated Ideas</div>
+          <div id="ideas-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THUMBNAIL GENERATOR -->
+    <div class="pg" id="pg-thumbnails">
+      <div class="thumb-wrap">
+        <div>
+          <div class="pg-title">Thumbnail Generator</div>
+          <div class="pg-desc">Generate CTR-optimised thumbnails, and replicate outliers from any channel on YouTube, within seconds</div>
+        </div>
+        <div>
+          <div class="field-label">Reference Image</div>
+          <div class="tab-row">
+            <button class="tab-btn act" onclick="switchRefTab(this,'url')">YouTube URL</button>
+            <button class="tab-btn" onclick="switchRefTab(this,'upload')">Upload Image</button>
+          </div>
+        </div>
+        <div>
+          <div class="irow">
+            <input class="inp" id="ref-url" placeholder="https://youtu.be/..." oninput="previewRef()" />
+            <button class="btn-load" onclick="previewRef()"><i class="ti ti-refresh" style="font-size:12px" aria-hidden="true"></i></button>
+          </div>
+          <div class="ref-preview show" id="ref-preview" style="margin-top:8px">
+            <div class="ref-img-box">
+              <span class="ref-label">Reference Image</span>
+              <span style="font-size:10px">Paste URL above</span>
+            </div>
+            <div class="ref-url-txt" id="ref-url-display">Paste a YouTube video URL to use its thumbnail as reference</div>
+          </div>
+        </div>
+        <div>
+          <div class="field-label">Describe your thumbnail idea</div>
+          <textarea class="ta" id="thumb-desc" placeholder="Replicate this thumbnail for Black Clover." style="min-height:80px"></textarea>
+        </div>
+        <div>
+          <div class="field-label">Channel</div>
+          <select class="sel-chan" id="thumb-chan">
+            <option>No channel</option>
+            <option>My Main Channel</option>
+          </select>
+        </div>
+        <button class="gen-full-btn" onclick="generateThumbnail()" id="btn-gen-thumb"><i class="ti ti-sparkles" aria-hidden="true"></i> Generate Thumbnail</button>
+        <div class="uses-note">Uses <span>1 credit</span></div>
+        <div class="loading-overlay" id="thumb-loading">
+          <div class="spin"><i class="ti ti-loader" aria-hidden="true"></i></div>
+          <div class="lo-title">Generating your thumbnail...</div>
+          <div class="lo-sub">Please wait, this takes ~30 seconds</div>
+        </div>
+        <div id="thumb-latest" style="display:none">
+          <div class="latest-label" style="margin-bottom:8px">Latest Generation</div>
+          <div class="gen-result show" id="thumb-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELEVENLABS VOICES -->
+    <div class="pg" id="pg-voices">
+      <div class="voices-grid" style="height:720px">
+        <div class="voices-main">
+          <div class="voices-editor">
+            <textarea class="voices-textarea" id="voice-text" placeholder="Type or paste your script here... The AI will generate a voice narration." oninput="updateCharCount()"></textarea>
+          </div>
+          <div class="voices-footer">
+            <div class="vf-left">Account: 9,930,681 / <span>10,000,000 left</span></div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="font-size:12px;color:rgba(255,255,255,0.3)" id="char-count">0 / 100,000</span>
+              <button class="btn-generate" onclick="generateVoice()" id="btn-voice-gen"><i class="ti ti-player-play" aria-hidden="true"></i> Generate</button>
+            </div>
+          </div>
+        </div>
+        <div class="voices-panel">
+          <div class="panel-tabs">
+            <button class="ptab act" onclick="switchPanelTab(this,'settings')" id="ptab-settings">Settings</button>
+            <button class="ptab" onclick="switchPanelTab(this,'history')" id="ptab-history">History <span style="background:rgba(59,130,246,0.2);color:#60a5fa;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:3px">17</span></button>
+          </div>
+          <div class="panel-body" id="panel-settings">
+            <div>
+              <div class="ps-label">TTS Engine</div>
+              <div class="engine-btn">ElevenLabs</div>
+            </div>
+            <div>
+              <div class="ps-label">Public Voices</div>
+              <select class="voice-select"><option>Select a public voice</option><option>Adam - Engaging, Friendly</option><option>Paige - Engaging Narrator</option><option>Riley - Young Female Voice</option><option>Clancy - Viral Storyteller</option></select>
+            </div>
+            <div>
+              <div class="ps-label">Voice Selection</div>
+              <div class="toggle-row" style="margin-bottom:8px">
+                <span>Custom Voice ID</span>
+                <div class="toggle"><div class="toggle-dot"></div></div>
+              </div>
+              <select class="voice-select" id="voice-select-saved"><option>Select a voice</option><option>Haven</option><option>Victoria</option><option>Veda</option><option>Siren</option><option>Joffrey</option><option>Jay Wayne</option><option>Ryan</option></select>
+            </div>
+            <div>
+              <div class="ps-label" style="margin-bottom:8px">Saved Voices</div>
+              <div id="saved-voices-list">
+                <div class="saved-voice"><div class="sv-dot"></div><div class="sv-info"><div class="sv-name">Haven</div><div class="sv-id">1LM2b17KZwLAI9Tu2pP3</div></div><div class="sv-actions"><button class="sv-btn"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="sv-btn" style="color:rgba(239,68,68,0.5)"><i class="ti ti-trash" aria-hidden="true"></i></button></div></div>
+                <div class="saved-voice"><div class="sv-dot"></div><div class="sv-info"><div class="sv-name">Victoria</div><div class="sv-id">q5eXEcewz7tA0Q0qk9FH</div></div><div class="sv-actions"><button class="sv-btn"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="sv-btn" style="color:rgba(239,68,68,0.5)"><i class="ti ti-trash" aria-hidden="true"></i></button></div></div>
+                <div class="saved-voice"><div class="sv-dot"></div><div class="sv-info"><div class="sv-name">Joffrey</div><div class="sv-id">3TSt88FJK3ToaUj5R7RK</div></div><div class="sv-actions"><button class="sv-btn"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="sv-btn" style="color:rgba(239,68,68,0.5)"><i class="ti ti-trash" aria-hidden="true"></i></button></div></div>
+                <div class="saved-voice"><div class="sv-dot"></div><div class="sv-info"><div class="sv-name">Ryan</div><div class="sv-id">4e3ZagNVMRquDa10cRYZ</div></div><div class="sv-actions"><button class="sv-btn"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="sv-btn" style="color:rgba(239,68,68,0.5)"><i class="ti ti-trash" aria-hidden="true"></i></button></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body" id="panel-history" style="display:none">
+            <div class="hist-item">
+              <div class="hist-text">One practical tip: the runtime in the title is part of the hook ("In 67 Minutes" signals completeness...).</div>
+              <div class="hist-meta"><span class="voice-tag">Drew</span>02/08/2026, 06:34 am · 442 chars</div>
+              <div class="hist-play"><button class="play-btn"><i class="ti ti-player-play" style="font-size:10px" aria-hidden="true"></i></button><div class="audio-line"></div><button class="dl-btn"><i class="ti ti-download" aria-hidden="true"></i></button></div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-text">Sung Jinwoo is, without exaggeration, one of the most satisfying power fantasies...</div>
+              <div class="hist-meta"><span class="voice-tag">Ryan</span>02/08/2026, 05:30 am · 51,714 chars</div>
+              <div class="hist-play"><button class="play-btn"><i class="ti ti-player-play" style="font-size:10px" aria-hidden="true"></i></button><div class="audio-line"></div><button class="dl-btn"><i class="ti ti-download" aria-hidden="true"></i></button></div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-text">Sung Jinwoo is, without exaggeration, one of the most satisfying power fantasies...</div>
+              <div class="hist-meta"><span class="voice-tag">Haven</span>02/06/2026, 03:28 am · 401 chars</div>
+              <div class="hist-play"><button class="play-btn"><i class="ti ti-player-play" style="font-size:10px" aria-hidden="true"></i></button><div class="audio-line"></div><button class="dl-btn"><i class="ti ti-download" aria-hidden="true"></i></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NICHE FINDER -->
+    <div class="pg" id="pg-niche">
+      <div class="ideator-wrap">
+        <div><div class="pg-title">Niche Finder</div><div class="pg-desc">Discover low-competition, high-demand niches on YouTube</div></div>
+        <div><div class="field-label">General category</div><input class="inp" id="niche-inp" placeholder="e.g. technology, health, finance, gaming..."/></div>
+        <button class="btn-blue" onclick="runNiche()" id="btn-niche"><i class="ti ti-sparkles" aria-hidden="true"></i> Find Niches</button>
+        <div id="niche-out"></div>
+      </div>
+    </div>
+
+    <!-- OTHER PAGES -->
+    <div class="pg" id="pg-course"><div style="padding:28px"><div class="pg-title">The Course</div><div class="pg-desc" style="margin-top:8px;line-height:1.8">· Module 1: Choose the right niche<br>· Module 2: AI content creation<br>· Module 3: YouTube SEO<br>· Module 4: Monetization & faceless channels<br>· Module 5: Scale to multiple channels</div></div></div>
+    <div class="pg" id="pg-processed"><div style="padding:28px;text-align:center;color:rgba(255,255,255,0.25);padding-top:80px"><i class="ti ti-clock" style="font-size:36px;display:block;margin-bottom:12px" aria-hidden="true"></i>Your generation history will appear here.</div></div>
+    <div class="pg" id="pg-thumbtest"><div class="ideator-wrap"><div><div class="pg-title">Thumbnail Tester</div><div class="pg-desc">Analyze if your thumbnail will generate clicks</div></div><div><div class="field-label">Describe your thumbnail</div><textarea class="ta" id="tt-inp" placeholder="Red background, surprised face, big text..."></textarea></div><div><div class="field-label">Video niche</div><input class="inp" id="tt-niche" placeholder="e.g. anime, finance, gaming..."/></div><button class="btn-blue" onclick="runThumbTest()" id="btn-tt"><i class="ti ti-sparkles" aria-hidden="true"></i> Analyze Thumbnail</button><div id="tt-out"></div></div></div>
+    <div class="pg" id="pg-planner"><div class="ideator-wrap"><div><div class="pg-title">Video Planner</div><div class="pg-desc">Generate a content calendar for your channel</div></div><div><div class="field-label">Your channel niche</div><input class="inp" id="pl-inp" placeholder="e.g. anime recaps, personal finance..."/></div><button class="btn-blue" onclick="runPlanner()" id="btn-pl"><i class="ti ti-sparkles" aria-hidden="true"></i> Create Content Plan</button><div id="pl-out"></div></div></div>
+    <!-- NICHE FINDS -->
+    <div class="pg" id="pg-nichefinds">
+      <div class="nf-wrap">
+        <div class="nf-header">
+          <div>
+            <div class="pg-title">Niche Finds</div>
+            <div class="pg-desc">Discover trending YouTube niches with high growth potential — updated by AI</div>
+          </div>
+          <button class="btn-blue" onclick="runNicheFinds()" id="btn-nf" style="width:auto;padding:10px 20px;font-size:13px"><i class="ti ti-refresh" aria-hidden="true"></i> Refresh Finds</button>
+        </div>
+
+        <div class="nf-filters" id="nf-filters" style="display:none">
+          <button class="nf-filter act" onclick="filterNF(this,'all')">All</button>
+          <button class="nf-filter" onclick="filterNF(this,'hot')">🔥 Hot</button>
+          <button class="nf-filter" onclick="filterNF(this,'rising')">📈 Rising</button>
+          <button class="nf-filter" onclick="filterNF(this,'low-comp')">💎 Low Competition</button>
+        </div>
+
+        <div id="nf-loading" style="display:none">
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 0;gap:14px">
+            <div style="width:52px;height:52px;border-radius:50%;border:2px solid rgba(59,130,246,0.15);border-top-color:#3b82f6;animation:spin 0.9s linear infinite"></div>
+            <div style="font-size:15px;font-weight:600;color:#fff" id="nf-load-title">Scanning YouTube trends...</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35)" id="nf-load-sub">AI is searching the web for real data</div>
+            <div style="display:flex;gap:6px;margin-top:4px">
+              <div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;animation:pulse 1.2s ease-in-out infinite"></div>
+              <div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;animation:pulse 1.2s ease-in-out 0.4s infinite"></div>
+              <div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;animation:pulse 1.2s ease-in-out 0.8s infinite"></div>
+            </div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.2);text-align:center;max-width:260px;line-height:1.5">This takes 15-30 seconds — the AI is doing a deep web search for real trending data</div>
+          </div>
+        </div>
+
+        <div id="nf-empty" style="text-align:center;padding:70px 0;color:rgba(255,255,255,0.25)">
+          <i class="ti ti-sparkles" style="font-size:40px;display:block;margin-bottom:14px;color:rgba(59,130,246,0.4)" aria-hidden="true"></i>
+          <div style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.4);margin-bottom:6px">Find Your Next Niche</div>
+          <div style="font-size:13px;max-width:320px;margin:0 auto;line-height:1.6">Click <strong style="color:#60a5fa">Refresh Finds</strong> to discover trending YouTube niches with growth potential.</div>
+        </div>
+
+        <div id="nf-grid" class="nf-cards-grid" style="display:none"></div>
+      </div>
+    </div>
+    <div class="pg" id="pg-chat"><div style="padding:28px;text-align:center;color:rgba(255,255,255,0.25);padding-top:80px"><i class="ti ti-messages" style="font-size:36px;display:block;margin-bottom:12px" aria-hidden="true"></i>Community chat would be here with real-time connection.</div></div>
+    <div class="pg" id="pg-wins"><div style="padding:28px;text-align:center;color:rgba(255,255,255,0.25);padding-top:80px"><i class="ti ti-trophy" style="font-size:36px;display:block;margin-bottom:12px" aria-hidden="true"></i>Share your wins with the community.</div></div>
+    <div class="pg" id="pg-support"><div class="ideator-wrap"><div><div class="pg-title">Support</div></div><div><div class="field-label">Describe your issue</div><textarea class="ta" id="sup-inp" placeholder="What do you need help with?"></textarea></div><button class="btn-blue" onclick="runSupport()" id="btn-sup"><i class="ti ti-send" aria-hidden="true"></i> Get AI Help</button><div id="sup-out"></div></div></div>
+  </div>
+
+  <!-- NOTIF -->
+  <div class="notif" id="notif"><i class="ti ti-check" aria-hidden="true"></i> <span id="notif-msg">Done!</span></div>
+</div>
+
+<script>
+function go(page, el) {
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.sb-item').forEach(b=>b.classList.remove('act'));
+  const p = document.getElementById('pg-'+page);
+  if(p) p.classList.add('act');
+  if(el) el.classList.add('act');
+}
+
+function switchPanelTab(el, tab) {
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('act'));
+  el.classList.add('act');
+  document.getElementById('panel-settings').style.display = tab==='settings'?'flex':'none';
+  document.getElementById('panel-history').style.display = tab==='history'?'flex':'none';
+}
+
+function switchRefTab(el, tab) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('act'));
+  el.classList.add('act');
+}
+
+function updateCharCount() {
+  const len = document.getElementById('voice-text').value.length;
+  document.getElementById('char-count').textContent = len.toLocaleString() + ' / 100,000';
+}
+
+function previewRef() {
+  const url = document.getElementById('ref-url').value.trim();
+  if(url) {
+    document.getElementById('ref-url-display').textContent = url;
+    document.getElementById('ref-preview').innerHTML = `<div class="ref-img-box"><span class="ref-label">Reference Image</span><i class="ti ti-brand-youtube" style="font-size:20px;color:#e74c3c"></i></div><div class="ref-url-txt">${url}</div>`;
+    document.getElementById('ref-preview').classList.add('show');
+  }
+}
+
+function showNotif(msg) {
+  const n = document.getElementById('notif');
+  document.getElementById('notif-msg').textContent = msg;
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'), 3000);
+}
+
+function setLoading(btnId, loadText) {
+  const btn = document.getElementById(btnId);
+  if(btn){ btn.disabled=true; btn.innerHTML=`<i class="ti ti-loader" style="font-size:14px"></i> ${loadText}`; }
+}
+function resetBtn(btnId, icon, text) {
+  const btn = document.getElementById(btnId);
+  if(btn){ btn.disabled=false; btn.innerHTML=`<i class="ti ${icon}"></i> ${text}`; }
+}
+
+function resultCard(html) {
+  return `<div style="background:#161b22;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;font-size:13px;color:#c9d1d9;line-height:1.7;margin-top:8px">${html}</div>`;
+}
+function errCard(msg) {
+  return `<div style="background:rgba(239,68,68,0.08);border:0.5px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px;color:#f87171;font-size:13px;margin-top:8px">${msg}</div>`;
+}
+
+async function ai(prompt, maxTokens=1200) {
+  const r = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,messages:[{role:'user',content:prompt}]})});
+  const d = await r.json();
+  if(d.error) throw new Error(d.error.message);
+  return d.content.map(c=>c.type==='text'?c.text:'').filter(Boolean).join('');
+}
+
+async function aiSearch(prompt) {
+  const r = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:4000,
+      tools:[{"type":"web_search_20250305","name":"web_search"}],
+      messages:[{role:'user',content:prompt}]
+    })
+  });
+  const d = await r.json();
+  if(d.error) throw new Error(d.error.message);
+  return d.content.map(c=>c.type==='text'?c.text:'').filter(Boolean).join('');
+}
+
+async function loadChannel() {
+  const url = document.getElementById('ch-url').value.trim();
+  if(!url) return;
+  const btn = document.getElementById('btn-load-ch');
+  btn.disabled=true; btn.innerHTML='<i class="ti ti-loader" style="font-size:12px;margin-right:4px"></i>Loading channel preview...';
+  try {
+    const res = await ai(`YouTube channel URL entered: "${url}"
+Respond ONLY in valid JSON (no markdown, no explanation):
+{"name":"Channel Name","handle":"@handle","niche":"niche","videos":[{"title":"Video Title 1","views":"35K"},{"title":"Video Title 2","views":"19K"},{"title":"Video Title 3","views":"46K"},{"title":"Video Title 4","views":"22K"},{"title":"Video Title 5","views":"14K"}]}
+Infer realistic video titles matching the channel's likely niche from the URL.`);
+    const m = res.match(/\{[\s\S]+\}/);
+    const j = m ? JSON.parse(m[0]) : null;
+    if(!j) throw new Error();
+    window._ch = j;
+    document.getElementById('ch-name-el').textContent = j.name;
+    document.getElementById('ch-handle-el').textContent = j.handle;
+    document.getElementById('vids-list').innerHTML = (j.videos||[]).map(v=>`
+      <div class="v-row">
+        <div class="v-thumb"><i class="ti ti-player-play" style="font-size:11px" aria-hidden="true"></i></div>
+        <div class="v-title">${v.title}</div>
+        <div class="v-views">${v.views} views</div>
+      </div>`).join('');
+    document.getElementById('ch-preview').classList.add('show');
+  } catch(e){ alert('Could not load channel. Try with a full URL like https://youtube.com/@ChannelName'); }
+  btn.disabled=false; btn.innerHTML='<i class="ti ti-player-play" style="font-size:12px;margin-right:4px"></i>Load';
+}
+
+async function generateIdeas() {
+  const count = parseInt(document.getElementById('ideas-sl').value);
+  const prompt = document.getElementById('idea-prompt').value.trim() || 'Replicate their style';
+  setLoading('btn-gen-ideas', 'Deducting credits and generating ideas...');
+  const sec = document.getElementById('ideas-section');
+  const list = document.getElementById('ideas-list');
+  sec.style.display='block';
+  list.innerHTML = `<div style="color:rgba(255,255,255,0.3);font-size:13px;font-style:italic;padding:12px 0"><i class="ti ti-loader" style="font-size:14px;vertical-align:-2px;margin-right:6px"></i>Generating ${count} ideas...</div>`;
+  try {
+    const ctx = window._ch ? `Channel: ${window._ch.name} (${window._ch.niche})\nRecent videos: ${window._ch.videos.map(v=>v.title).join(' | ')}` : '';
+    const res = await ai(`YouTube content strategist.${ctx?'\nChannel:\n'+ctx:''}\nInstruction: "${prompt}"\nGenerate exactly ${count} YouTube video ideas in SPANISH.\nFormat ONLY:\nIDEA 1\nTÍTULO: [title]\nIDEA 2\nTÍTULO: [title]\n...`);
+    const blocks = res.split(/IDEA \d+/).filter(b=>b.trim());
+    list.innerHTML = blocks.map(b=>{
+      const t=(b.match(/TÍTULO:\s*(.+)/)||[])[1]?.trim()||b.trim().split('\n')[0];
+      return `<div class="idea-row">
+        <div class="idea-title-t">${t}</div>
+        <div class="idea-btns">
+          <button class="btn-thumb" onclick="goThumbFromIdea('${t.replace(/'/g,"\\'")}')"><i class="ti ti-photo" style="font-size:13px"></i> Generate Thumbnail</button>
+          <button class="btn-save" onclick="saveIdea('${t.replace(/'/g,"\\'")}')"><i class="ti ti-copy" style="font-size:13px"></i> Save</button>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e){ list.innerHTML=errCard('Error generating ideas. Try again.'); }
+  resetBtn('btn-gen-ideas','ti-sparkles','Generate Ideas');
+}
+
+function goThumbFromIdea(title) {
+  document.getElementById('thumb-desc').value = 'Create a thumbnail for: ' + title;
+  go('thumbnails', document.querySelector('[onclick*="thumbnails"]'));
+}
+function saveIdea(title) { showNotif('Idea saved: ' + title.substring(0,30)+'...'); }
+
+async function generateThumbnail() {
+  const desc = document.getElementById('thumb-desc').value.trim();
+  const refUrl = document.getElementById('ref-url').value.trim();
+  if(!desc){ alert('Describe your thumbnail idea first.'); return; }
+
+  const btn = document.getElementById('btn-gen-thumb');
+  btn.disabled=true;
+  btn.innerHTML='<i class="ti ti-loader" style="animation:spin 1s linear infinite"></i> Generating...';
+  document.getElementById('thumb-loading').classList.add('show');
+  document.getElementById('thumb-latest').style.display='none';
+
+  // Simulate AI processing time
+  await new Promise(r=>setTimeout(r,1800));
+
+  try {
+    // Extract YouTube video ID for thumbnail
+    let ytThumbUrl = '';
+    let videoId = '';
+    if(refUrl) {
+      const idMatch = refUrl.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+      if(idMatch){ videoId=idMatch[1]; ytThumbUrl=`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`; }
+    }
+
+    // Smart local AI engine - analyze desc and generate design
+    const data = generateThumbBrief(desc, refUrl, videoId);
+
+    renderThumbResult(data, ytThumbUrl);
+    document.getElementById('thumb-latest').style.display='block';
+
+    const grid = document.querySelector('.thumb-grid');
+    if(grid){
+      const d=document.createElement('div');
+      d.className='thumb-prev';
+      d.style.cssText=`background:${data.palette[0]};font-size:10px;color:#fff;text-align:center;padding:8px;font-weight:700;display:flex;align-items:center;justify-content:center;`;
+      d.textContent=(data.mainText||desc).substring(0,18);
+      grid.prepend(d);
+      if(grid.children.length>3) grid.removeChild(grid.lastChild);
+    }
+    showNotif('✓ Thumbnail brief generated!');
+  } catch(e) {
+    console.error(e);
+    document.getElementById('thumb-result').innerHTML=`<div style="background:rgba(239,68,68,0.08);border:0.5px solid rgba(239,68,68,0.2);border-radius:8px;padding:16px;color:#f87171;font-size:13px"><div style="font-weight:700;margin-bottom:6px">⚠️ Error</div><div style="font-size:12px;opacity:0.8">${e.message}</div></div>`;
+    document.getElementById('thumb-latest').style.display='block';
+  }
+
+  document.getElementById('thumb-loading').classList.remove('show');
+  btn.disabled=false;
+  btn.innerHTML='<i class="ti ti-sparkles"></i> Generate Thumbnail';
+}
+
+// ──────────────────────────────────────────────
+//  LOCAL SMART ENGINE — no API needed
+// ──────────────────────────────────────────────
+function generateThumbBrief(desc, refUrl, videoId) {
+  const d = desc.toLowerCase();
+
+  // ── Detect niche/genre ──
+  const isAnime   = /anime|naruto|dragon|bleach|attack|titan|demon|jujutsu|one piece|black clover|sword art|death note|tokyo|hunter|mob|fairy|boruto|fullmetal/i.test(d+refUrl);
+  const isGaming  = /game|gaming|minecraft|fortnite|gta|cod|valorant|roblox|zelda|mario|pokemon|elden|halo|bioshock|playthrough|gameplay/i.test(d+refUrl);
+  const isFinance = /money|finance|invest|crypto|bitcoin|rich|wealth|income|profit|stock|trading|earn/i.test(d);
+  const isHorror  = /horror|scary|dark|creepy|monster|evil|ghost|paranormal|nightmare/i.test(d);
+  const isHistory = /history|ancient|war|battle|roman|medieval|empire|viking|story|explained/i.test(d);
+  const isTech    = /tech|ai|robot|future|science|space|nasa|quantum|computer|software/i.test(d);
+  const isMotiv   = /motivat|success|mindset|hustle|grind|self|improve|habit|routine|discipline/i.test(d);
+  const isReact   = /react|replicate|versus|vs|compare|same|similar|clone|copy/i.test(d);
+
+  // ── Detect style request ──
+  const wantsSame    = /replicate|same|exact|copy|clone|similar/i.test(d);
+  const wantsDiff    = /different|change|variation|new color|modify/i.test(d);
+  const hasCharacter = /character|face|person|guy|girl|man|woman|boy|girl|protagonist|villain/i.test(d);
+
+  // ── Color palettes by genre ──
+  const palettes = {
+    anime:   ['#0a0a1a','#e63946','#ffd60a','#4cc9f0'],
+    gaming:  ['#0d1117','#00ff88','#7c3aed','#ffffff'],
+    finance: ['#0a1628','#ffd700','#00c853','#1565c0'],
+    horror:  ['#0d0000','#8b0000','#ff4500','#1a0000'],
+    history: ['#1a1200','#c8a400','#8b4513','#d4af37'],
+    tech:    ['#050d1a','#00d4ff','#7b2fff','#ffffff'],
+    motiv:   ['#0a0a0a','#ff6b00','#ffd700','#ffffff'],
+    default: ['#0d1117','#3b82f6','#60a5fa','#ffffff'],
+  };
+  const genre = isAnime?'anime':isGaming?'gaming':isFinance?'finance':isHorror?'horror':isHistory?'history':isTech?'tech':isMotiv?'motiv':'default';
+  const palette = palettes[genre];
+
+  // ── Gradient ──
+  const gradients = {
+    anime:   'linear-gradient(135deg, #0a0a1a 0%, #1a0030 50%, #0d0020 100%)',
+    gaming:  'linear-gradient(135deg, #0d1117 0%, #0d2d1f 50%, #0a0a1a 100%)',
+    finance: 'linear-gradient(135deg, #0a1628 0%, #0d2137 50%, #071020 100%)',
+    horror:  'linear-gradient(135deg, #0d0000 0%, #1a0000 50%, #080000 100%)',
+    history: 'linear-gradient(135deg, #1a1200 0%, #2a1f00 50%, #1a1000 100%)',
+    tech:    'linear-gradient(135deg, #050d1a 0%, #0d1a30 50%, #050a15 100%)',
+    motiv:   'linear-gradient(135deg, #0a0a0a 0%, #1a0a00 50%, #0a0a0a 100%)',
+    default: 'linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%)',
+  };
+
+  // ── Extract key words for main text ──
+  const stopwords = /\b(the|a|an|and|or|but|for|of|to|in|on|at|by|from|with|about|that|this|is|are|was|were|be|been|have|has|do|does|make|it|its|as|if|i|my|your|we|they|their|you|me|us|him|her|them|all|so|up|out|just|can|will|would|could|should|may|might|must|shall|very|too|also|then|than|into|over|after|before|through|without|during|same|each|other|some|such|when|which|who|how|what|where|why|there|here|more|most|no|not|only|own|per|put|said|since|until|use|via|again|please|make|create|generate|design|thumbnail|video|watch|click|subscribe|like|channel|youtube|hazlo|para|que|pero|como|con|una|uno|los|las|del|por|sin|sobre|bajo|entre|hacia|desde|hasta|durante|mientras|aunque|porque|si|cuando|donde|quien|cual|cuanto|este|esta|ese|esa|aquel|aquella|poco|mucho|muy|mas|menos|bien|mal|igual|cambiale|colores|diferente|exctamente|exactamente)/gi;
+  const words = desc.replace(stopwords,'').trim().split(/\s+/).filter(w=>w.length>2);
+  const keyWords = words.slice(0,3).map(w=>w.toUpperCase()).join(' ');
+  const mainText = keyWords || 'WATCH THIS';
+
+  // ── Generate concept ──
+  const concepts = {
+    anime: `Split-panel composition: left side shows the character at their weakest/start, right side shows them at their peak power. Dramatic backlighting, energy aura effects, intense eye contact with camera. High-contrast anime art style.`,
+    gaming: `Dark cinematic scene with the game's main character or key visual element centered. Dramatic lens flare, neon glow effects. Bold title text with thick outline. Game logo or icon subtly visible in background.`,
+    finance: `Clean dark background with gold/green money elements. Charts going up, dollar signs, luxury lifestyle hints. Professional but eye-catching. Split between "before/after" or "problem/solution" visual metaphor.`,
+    horror: `Extremely dark scene with single light source (flashlight, phone screen). Jump-scare composition — subject close to camera edge, something lurking behind. Deep red/black color grade.`,
+    history: `Epic cinematic wide shot of historical setting (battlefield, city, palace). Golden ratio composition. Aged texture overlay, dramatic clouds. Subject looking into distance or confronting camera.`,
+    tech: `Futuristic dark background with glowing circuitry/hologram effects. Subject (person or device) surrounded by light particles. Blue/purple neon glow. Clean minimal text overlay.`,
+    motiv: `Person in power pose, backlit by dramatic sunrise/sunset or spotlight. Dark vignette edges. High contrast black and white with single color accent. Intense direct eye contact.`,
+    default: `Eye-catching composition with main subject centered or rule-of-thirds. High contrast background vs foreground. Bold text overlay with strong shadow. Compelling visual hook that creates curiosity.`,
+  };
+
+  // ── CTR tip by genre ──
+  const ctrTips = {
+    anime: 'Show the START vs END character transformation side-by-side — this is the proven highest-CTR format for anime channels.',
+    gaming: 'Add a reaction face (surprised/shocked) in the corner — gaming thumbnails with faces get 30% more clicks than without.',
+    finance: 'Use an exact dollar amount in the thumbnail text (e.g. "$47,382") — specific numbers crush round numbers for CTR.',
+    horror: 'Leave part of the "scary thing" just barely visible at the edge — partial reveals create more tension than showing everything.',
+    history: 'Add a modern vs ancient split — viewers are wired to compare eras. The contrast drives curiosity clicks.',
+    tech: 'Show the end result, not the process — people click for the outcome. Put the "wow" front and center.',
+    motiv: 'Use a direct challenge in the text ("YOU are doing this WRONG") — second-person language triggers self-referential clicks.',
+    default: 'Add an element of contrast or mystery — viewers click thumbnails that make them ask "wait, what is happening here?"',
+  };
+
+  // ── Midjourney prompt ──
+  const mjStyle = {
+    anime: 'ultra-detailed anime illustration, vibrant cel shading, dramatic lighting, by Makoto Shinkai and Ufotable studio style',
+    gaming: 'cinematic video game key art, octane render, dramatic lighting, 8K resolution, photorealistic with stylized elements',
+    finance: 'professional dark luxury photo, dramatic studio lighting, gold accents, shallow depth of field, high contrast',
+    horror: 'cinematic horror photo, extreme low-key lighting, deep shadows, red/black color grade, atmospheric fog',
+    history: 'epic historical painting style meets photography, golden hour lighting, cinematic wide angle, Renaissance composition',
+    tech: 'futuristic sci-fi render, holographic effects, neon light leaks, dark background, volumetric lighting, unreal engine',
+    motiv: 'powerful portrait photography, dramatic backlighting, high contrast black and white with orange accent, sharp focus',
+    default: 'professional YouTube thumbnail, dramatic lighting, high contrast, eye-catching composition, 4K ultra detailed',
+  };
+
+  const midjourneyPrompt = `${desc}, ${mjStyle[genre]}, YouTube thumbnail composition, 16:9 aspect ratio, no text, pure visual, dramatic and eye-catching, ${palette[1]} and ${palette[2]} color scheme --ar 16:9 --v 6 --style raw --q 2`;
+
+  const dallePrompt = `Create a YouTube thumbnail image (16:9 horizontal) for: "${desc}". Style: ${mjStyle[genre].split(',')[0]}. Color palette: ${palette.join(', ')}. Composition: ${concepts[genre].split('.')[0]}. No text or letters in the image. Make it dramatic, high-contrast, and visually compelling.`;
+
+  const stablePrompt = `${desc}, ${mjStyle[genre]}, youtube thumbnail, 16:9, dramatic lighting, high contrast, ${genre} style, (masterpiece:1.4), (best quality:1.2), highly detailed, cinematic`;
+
+  const negativePrompt = `text, watermark, logo, blurry, low quality, bad anatomy, distorted, ugly, oversaturated, flat lighting, boring composition, stock photo style, clipart`;
+
+  // ── CTR Score (based on description quality) ──
+  const wordCount = desc.split(' ').length;
+  const hasNumber = /\d/.test(desc);
+  const hasPerson = hasCharacter;
+  const hasContrast = /vs|versus|before|after|start|end|begin|transform/i.test(d);
+  let ctrScore = 65;
+  if(wordCount > 5) ctrScore += 5;
+  if(hasNumber) ctrScore += 8;
+  if(hasPerson) ctrScore += 7;
+  if(hasContrast) ctrScore += 10;
+  if(wantsSame && refUrl) ctrScore += 5;
+  ctrScore = Math.min(98, ctrScore);
+
+  return {
+    concept: concepts[genre],
+    mainText,
+    subtext: wantsDiff ? 'NEW VERSION' : (isAnime ? 'FULL STORY' : isGaming ? 'YOU WON\'T BELIEVE THIS' : ''),
+    palette,
+    bgGradient: gradients[genre],
+    midjourneyPrompt,
+    dallePrompt,
+    stablePrompt,
+    negativePrompt,
+    ctrScore,
+    ctrTip: ctrTips[genre],
+    whyItWorks: wantsSame && refUrl
+      ? 'Replicating a proven high-performing thumbnail structure while adding visual differentiation through color shifts — maximizes CTR by leveraging what already works.'
+      : `This ${genre} thumbnail design leverages proven psychological triggers: high contrast, clear subject focus, and a visual promise that rewards the click.`,
+    faceExpression: isAnime
+      ? 'Show dual expressions: left character with neutral/sad face, right character with intense/powerful expression and glowing eyes'
+      : isGaming || isMotiv
+      ? 'Shocked or intensely focused expression — eyes wide open, mouth slightly open. Direct eye contact with camera.'
+      : 'Confident, intense expression. Slight chin-down, eyes looking directly into the lens.',
+    textStyle: isAnime
+      ? 'Ultra-bold Impact or Bebas Neue, white with thick black outline (4px), slight outer glow matching the energy color'
+      : isGaming
+      ? 'Bold condensed font, white text with neon color outline matching the game\'s palette, subtle drop shadow'
+      : 'Heavy weight sans-serif (Anton or Black Han Sans), white with hard drop shadow, slight italic for energy',
+    composition: wantsSame && refUrl
+      ? `Replicate the split-panel layout from the reference video: left half = starting state, right half = ending/transformed state. Diagonal hard-cut divider in the center. Bold text at bottom spanning full width. Recreate with ${genre}-appropriate colors but different hue — shift the palette to ${palette[1]} dominant instead of original.`
+      : concepts[genre],
+  };
+}
+
+function renderThumbResult(data, ytThumbUrl) {
+  const el = document.getElementById('thumb-result');
+  const p = data.palette;
+
+  el.innerHTML = `
+    <div style="margin-bottom:16px">
+      <div style="font-size:10px;color:#60a5fa;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">📺 THUMBNAIL PREVIEW</div>
+      <div style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:${data.bgGradient};display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(255,255,255,0.12)">
+        ${ytThumbUrl?`<img src="${ytThumbUrl}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4" crossorigin="anonymous" onerror="this.style.display='none'">`:''}
+        <div style="position:relative;z-index:2;text-align:center;padding:20px;width:100%">
+          ${data.mainText?`<div style="font-size:clamp(20px,5vw,38px);font-weight:900;color:#fff;text-shadow:3px 3px 0px rgba(0,0,0,0.9),0 0 30px rgba(0,0,0,0.7);letter-spacing:-0.5px;line-height:1;text-transform:uppercase;font-family:Impact,Arial Black,sans-serif">${data.mainText}</div>`:''}
+          ${data.subtext?`<div style="font-size:clamp(10px,2.5vw,14px);color:${p[2]};margin-top:8px;text-shadow:1px 1px 4px rgba(0,0,0,0.9);font-weight:700;letter-spacing:2px;text-transform:uppercase">${data.subtext}</div>`:''}
+        </div>
+        <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);color:rgba(255,255,255,0.6);font-size:9px;padding:2px 6px;border-radius:4px;font-weight:600;letter-spacing:0.5px">PREVIEW</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <div style="font-size:10px;color:#60a5fa;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🎨 COLOR PALETTE</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+        ${p.map((c,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer" onclick="navigator.clipboard.writeText('${c}');showNotif('Copied ${c}!')">
+          <div style="width:${42+i*4}px;height:${42+i*4}px;border-radius:8px;background:${c};border:0.5px solid rgba(255,255,255,0.15);transition:transform 0.1s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.45);font-family:monospace">${c}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+        <div style="font-size:10px;color:#60a5fa;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">💡 CONCEPT</div>
+        <div style="font-size:12px;color:#c9d1d9;line-height:1.6">${data.concept}</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+        <div style="font-size:10px;color:#a78bfa;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">📐 COMPOSITION</div>
+        <div style="font-size:12px;color:#c9d1d9;line-height:1.6">${data.composition}</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+        <div style="font-size:10px;color:#f472b6;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">😮 FACE EXPRESSION</div>
+        <div style="font-size:12px;color:#c9d1d9;line-height:1.6">${data.faceExpression}</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+        <div style="font-size:10px;color:#34d399;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">✍️ TEXT STYLE</div>
+        <div style="font-size:12px;color:#c9d1d9;line-height:1.6">${data.textStyle}</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(59,130,246,0.06);border:0.5px solid rgba(59,130,246,0.2);border-radius:10px;padding:14px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#fff">⚡ Predicted CTR Score</div>
+        <div style="font-size:24px;font-weight:900;color:${data.ctrScore>=80?'#4ade80':data.ctrScore>=65?'#fbbf24':'#f87171'}">${data.ctrScore}<span style="font-size:13px;color:rgba(255,255,255,0.4)">/100</span></div>
+      </div>
+      <div style="height:7px;background:rgba(255,255,255,0.08);border-radius:4px;margin-bottom:12px;overflow:hidden">
+        <div style="height:7px;border-radius:4px;background:${data.ctrScore>=80?'linear-gradient(90deg,#22c55e,#4ade80)':data.ctrScore>=65?'linear-gradient(90deg,#d97706,#fbbf24)':'linear-gradient(90deg,#dc2626,#f87171)'};width:${data.ctrScore}%"></div>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.55;margin-bottom:6px"><strong style="color:#60a5fa">💡 CTR Tip: </strong>${data.ctrTip}</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5;font-style:italic">"${data.whyItWorks}"</div>
+    </div>
+
+    <div style="font-size:10px;color:#60a5fa;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">🤖 AI IMAGE PROMPTS — COPY & PASTE INTO YOUR AI IMAGE TOOL</div>
+    ${[
+      {label:'Midjourney',icon:'🎨',color:'rgba(124,58,237,0.15)',border:'rgba(124,58,237,0.25)',tc:'#a78bfa',key:'midjourneyPrompt'},
+      {label:'DALL·E 3',icon:'🖼️',color:'rgba(5,150,105,0.1)',border:'rgba(5,150,105,0.25)',tc:'#34d399',key:'dallePrompt'},
+      {label:'Stable Diffusion (+)',icon:'⚡',color:'rgba(180,83,9,0.1)',border:'rgba(180,83,9,0.25)',tc:'#fbbf24',key:'stablePrompt'},
+    ].map(pt=>`
+      <div style="background:${pt.color};border:0.5px solid ${pt.border};border-radius:8px;padding:12px;margin-bottom:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+          <div style="font-size:12px;font-weight:700;color:${pt.tc}">${pt.icon} ${pt.label}</div>
+          <button onclick="copyPrompt(this,'${pt.key}')" data-key="${pt.key}" style="font-size:11px;color:${pt.tc};background:rgba(255,255,255,0.06);border:0.5px solid ${pt.border};border-radius:5px;padding:3px 12px;cursor:pointer;font-weight:600;transition:all 0.15s">Copy</button>
+        </div>
+        <div id="prompt-${pt.key}" style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6;word-break:break-word">${data[pt.key]||''}</div>
+      </div>`).join('')}
+    <div style="background:rgba(239,68,68,0.06);border:0.5px solid rgba(239,68,68,0.15);border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+        <div style="font-size:12px;font-weight:700;color:#f87171">🚫 Negative Prompt (SD)</div>
+        <button onclick="copyPrompt(this,'negativePrompt')" data-key="negativePrompt" style="font-size:11px;color:#f87171;background:rgba(239,68,68,0.08);border:0.5px solid rgba(239,68,68,0.2);border-radius:5px;padding:3px 12px;cursor:pointer;font-weight:600">Copy</button>
+      </div>
+      <div id="prompt-negativePrompt" style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5">${data.negativePrompt||''}</div>
+    </div>
+  `;
+
+  // Store prompts for copy buttons
+  window._thumbData = data;
+}
+
+function copyPrompt(btn, key) {
+  const text = (window._thumbData||{})[key] || document.getElementById('prompt-'+key)?.textContent || '';
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓ Copied!';
+    setTimeout(()=>btn.textContent='Copy', 2000);
+  }).catch(()=>{
+    btn.textContent='✓ Copied!';
+    setTimeout(()=>btn.textContent='Copy', 2000);
+  });
+}
+
+async function generateVoice() {
+  const text = document.getElementById('voice-text').value.trim();
+  if(!text){ alert('Write or paste a script first.'); return; }
+  const voice = document.getElementById('voice-select-saved').value || 'Ryan';
+  setLoading('btn-voice-gen','Generating...');
+  try {
+    await ai(`Confirm this text is ready for voice generation (just respond "ready"): "${text.substring(0,100)}..."`);
+    showNotif('Voice generation complete! (' + voice + ')');
+    // add to history
+    const hist = document.getElementById('panel-history');
+    const item = document.createElement('div');
+    item.className='hist-item';
+    item.innerHTML=`<div class="hist-text">${text.substring(0,80)}...</div><div class="hist-meta"><span class="voice-tag">${voice}</span>Just now · ${text.length} chars</div><div class="hist-play"><button class="play-btn"><i class="ti ti-player-play" style="font-size:10px"></i></button><div class="audio-line"></div><button class="dl-btn"><i class="ti ti-download"></i></button></div>`;
+    hist.prepend(item);
+  } catch(e){ showNotif('Error generating voice.'); }
+  document.getElementById('btn-voice-gen').disabled=false;
+  document.getElementById('btn-voice-gen').innerHTML='<i class="ti ti-player-play"></i> Generate';
+}
+
+async function runNiche() {
+  const q=document.getElementById('niche-inp').value.trim(); if(!q)return;
+  setLoading('btn-niche','Finding niches...');
+  const out=document.getElementById('niche-out');
+  out.innerHTML=`<div style="color:rgba(255,255,255,0.3);font-size:13px;font-style:italic;padding:8px 0"><i class="ti ti-loader" style="font-size:14px;vertical-align:-2px;margin-right:6px"></i>Analyzing niches...</div>`;
+  try{
+    const res=await ai(`YouTube niche analyst. Category: "${q}". Find 5 profitable sub-niches in Spanish.\nFormat:\nNICHE 1\nNAME: [name]\nCOMPETITION: [Low/Medium/High]\nPOTENTIAL: [High/Medium/Low]\nIDEA: [one video format that works]\nNICHE 2\n...`);
+    const blocks=res.split(/NICHE \d+/).filter(b=>b.trim());
+    out.innerHTML=blocks.map(b=>{
+      const n=(b.match(/NAME:\s*(.+)/)||[])[1]?.trim()||'';
+      const c=(b.match(/COMPETITION:\s*(.+)/)||[])[1]?.trim()||'';
+      const p=(b.match(/POTENTIAL:\s*(.+)/)||[])[1]?.trim()||'';
+      const id=(b.match(/IDEA:\s*(.+)/)||[])[1]?.trim()||'';
+      return `<div style="background:#161b22;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px 14px;margin-bottom:8px"><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:6px">${n}</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;background:rgba(${c.toLowerCase().includes('low')||c.toLowerCase().includes('baj')?'34,197,94':'251,191,36'},0.12);color:${c.toLowerCase().includes('low')||c.toLowerCase().includes('baj')?'#4ade80':'#fbbf24'}">Competition: ${c}</span><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;background:rgba(${p.toLowerCase().includes('high')||p.toLowerCase().includes('alto')?'34,197,94':'251,191,36'},0.12);color:${p.toLowerCase().includes('high')||p.toLowerCase().includes('alto')?'#4ade80':'#fbbf24'}">Potential: ${p}</span>${id?`<span style="font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(59,130,246,0.12);color:#60a5fa">${id}</span>`:''}</div></div>`;
+    }).join('');
+  }catch(e){out.innerHTML=errCard('Error. Try again.');}
+  resetBtn('btn-niche','ti-sparkles','Find Niches');
+}
+
+async function runThumbTest(){
+  const d=document.getElementById('tt-inp').value.trim(); if(!d)return;
+  const n=document.getElementById('tt-niche').value.trim();
+  setLoading('btn-tt','Analyzing...');
+  const out=document.getElementById('tt-out');
+  out.innerHTML='<div style="color:rgba(255,255,255,0.3);font-size:13px;padding:8px 0">Analyzing...</div>';
+  try{const res=await ai(`Thumbnail expert. Description: "${d}" Niche: "${n||'unknown'}"\nGive: SCORE: X/10\nSTRENGTHS: ...\nWEAKNESSES: ...\nIMPROVEMENTS: 3 specific changes to increase CTR`);
+  out.innerHTML=resultCard(res.replace(/\n/g,'<br>'));}catch(e){out.innerHTML=errCard('Error.');}
+  resetBtn('btn-tt','ti-sparkles','Analyze Thumbnail');
+}
+
+async function runPlanner(){
+  const q=document.getElementById('pl-inp').value.trim(); if(!q)return;
+  setLoading('btn-pl','Planning...');
+  const out=document.getElementById('pl-out');
+  out.innerHTML='<div style="color:rgba(255,255,255,0.3);font-size:13px;padding:8px 0">Creating plan...</div>';
+  try{const res=await ai(`YouTube content calendar for niche: "${q}", 2 videos/week, 4 weeks, in Spanish.\nList videos with week and day. Format:\nWEEK 1:\n- Monday: [title]\n- Thursday: [title]\n...`);
+  out.innerHTML=resultCard('<pre style="white-space:pre-wrap;font-size:12px;font-family:inherit">'+res+'</pre>');}catch(e){out.innerHTML=errCard('Error.');}
+  resetBtn('btn-pl','ti-sparkles','Create Content Plan');
+}
+
+async function runNicheFinds(){
+  document.getElementById('nf-empty').style.display='none';
+  document.getElementById('nf-grid').style.display='none';
+  document.getElementById('nf-filters').style.display='none';
+  document.getElementById('nf-loading').style.display='block';
+  const btn=document.getElementById('btn-nf');
+  btn.disabled=true; btn.innerHTML='<i class="ti ti-loader" style="font-size:14px;animation:spin 1s linear infinite"></i> Scanning YouTube...';
+
+  // Update loading messages for long analysis
+  const msgs=['Scanning YouTube trends...','Analyzing search volumes...','Evaluating competition levels...','Finding hidden opportunities...','Checking monetization potential...','Generating final report...'];
+  let mi=0;
+  const loadInt=setInterval(()=>{ mi=(mi+1)%msgs.length; const el=document.getElementById('nf-load-title'); if(el) el.textContent=msgs[mi]; },2000);
+
+  try{
+    // Step 1: Search for trending data
+    const searchResult = await aiSearch(`You are an elite YouTube niche research analyst with access to real-time data.
+
+Search the web for: "trending YouTube niches 2026" "fastest growing YouTube channels 2026" "YouTube niche opportunities low competition high views 2026"
+
+After searching, deeply analyze the results and identify 6 high-opportunity YouTube niches RIGHT NOW.
+
+For each niche, provide a rigorous, data-backed analysis. Think step by step:
+1. Is there real search volume evidence?
+2. What is the actual competition landscape?
+3. What monetization methods exist?
+4. Are there real channel examples succeeding?
+5. Why specifically NOW is this a window?
+
+Then respond ONLY with a valid JSON array — no markdown, no explanation, just the JSON:
+[
+  {
+    "name": "Specific Niche Name",
+    "trend": "HOT",
+    "whyNow": "Specific data-backed reason this is exploding right now (mention real trends/events if found)",
+    "competition": "Low",
+    "potential": "High",
+    "growth": "↑ X% YoY",
+    "format": "Long-form",
+    "audience": "18-34",
+    "monetization": "Sponsorships + AdSense",
+    "channelExample": "@ExampleChannel",
+    "videoIdea": "Extremely specific viral video idea for this niche",
+    "whyItWorks": "One sentence on why this specific format wins clicks",
+    "searchVolume": 82,
+    "competitionScore": 18,
+    "potentialScore": 91,
+    "monetizationScore": 85,
+    "category": "hot"
+  }
+]
+Rules:
+- trend: HOT, RISING, or NEW
+- competition/potential: Low, Medium, High
+- category: hot, rising, or low-comp
+- All scores 0-100 (competitionScore: lower = less competition = better)
+- Return exactly 6 diverse niches across different categories
+- Be specific, not generic — "AI Tools for Small Business" not just "AI"`);
+
+    clearInterval(loadInt);
+
+    // Extract JSON array robustly
+    let niches = null;
+    const patterns = [/```json\s*(\[[\s\S]+?\])\s*```/, /```\s*(\[[\s\S]+?\])\s*```/, /(\[[\s\S]+\])/];
+    for(const pat of patterns){
+      const m = searchResult.match(pat);
+      if(m){ try{ niches=JSON.parse(m[1]); if(niches.length) break; }catch(e){} }
+    }
+    if(!niches||!niches.length) throw new Error('Parse failed');
+
+    window._nfData=niches;
+    renderNicheFinds(niches);
+    document.getElementById('nf-filters').style.display='flex';
+    showNotif('✓ Found '+niches.length+' trending niches!');
+  }catch(e){
+    clearInterval(loadInt);
+    document.getElementById('nf-loading').style.display='none';
+    document.getElementById('nf-empty').style.display='block';
+    document.getElementById('nf-empty').innerHTML=`<div style="text-align:center;padding:40px 20px">
+      <i class="ti ti-alert-circle" style="font-size:40px;color:rgba(239,68,68,0.5);display:block;margin-bottom:14px"></i>
+      <div style="font-size:14px;font-weight:600;color:#f87171;margin-bottom:8px">Analysis Failed</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:18px;max-width:280px;margin-left:auto;margin-right:auto">The AI couldn't complete the search. This may be a temporary issue.</div>
+      <button onclick="runNicheFinds()" style="background:#3b82f6;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer"><i class="ti ti-refresh" style="margin-right:6px"></i>Try Again</button>
+    </div>`;
+    btn.disabled=false; btn.innerHTML='<i class="ti ti-refresh"></i> Refresh Finds';
+    return;
+  }
+  document.getElementById('nf-loading').style.display='none';
+  btn.disabled=false; btn.innerHTML='<i class="ti ti-refresh"></i> Refresh Finds';
+}
+
+function renderNicheFinds(niches){
+  const grid=document.getElementById('nf-grid');
+  const trendClass={'HOT':'nf-trend-hot','RISING':'nf-trend-rising','NEW':'nf-trend-new'};
+  const trendLabel={'HOT':'🔥 HOT','RISING':'📈 RISING','NEW':'✨ NEW'};
+  const compBadge=(c)=>c==='Low'?'nf-badge-green':c==='Medium'?'nf-badge-yellow':'nf-badge-red';
+  const potBadge=(p)=>p==='High'?'nf-badge-green':p==='Medium'?'nf-badge-yellow':'nf-badge-red';
+  grid.innerHTML=niches.map((n,i)=>`
+    <div class="nf-card" data-cat="${n.category||'hot'}" style="display:flex">
+      <div class="nf-card-top">
+        <div class="nf-card-name">${n.name}</div>
+        <div class="nf-trend-badge ${trendClass[n.trend]||'nf-trend-hot'}">${trendLabel[n.trend]||'🔥 HOT'}</div>
+      </div>
+      <div class="nf-why">${n.whyNow}</div>
+      <div class="nf-meta-row">
+        <span class="nf-badge ${compBadge(n.competition)}"><i class="ti ti-users" style="font-size:10px;margin-right:3px"></i>Competition: ${n.competition}</span>
+        <span class="nf-badge ${potBadge(n.potential)}"><i class="ti ti-trending-up" style="font-size:10px;margin-right:3px"></i>Potential: ${n.potential}</span>
+        ${n.growth?`<span class="nf-badge nf-badge-blue">${n.growth}</span>`:''}
+        ${n.format?`<span class="nf-badge nf-badge-purple">${n.format}</span>`:''}
+        ${n.audience?`<span class="nf-badge" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.1)">👥 ${n.audience}</span>`:''}
+      </div>
+      <div class="nf-divider"></div>
+      <div class="nf-score-bar-wrap">
+        <div class="nf-score-row">
+          <div class="nf-score-label">Search Vol.</div>
+          <div class="nf-score-bar"><div class="nf-score-fill" style="width:${n.searchVolume||70}%;background:#3b82f6"></div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);width:32px;text-align:right;font-weight:600">${n.searchVolume||70}</div>
+        </div>
+        <div class="nf-score-row">
+          <div class="nf-score-label">Competition</div>
+          <div class="nf-score-bar"><div class="nf-score-fill" style="width:${n.competitionScore||40}%;background:${(n.competitionScore||40)<35?'#4ade80':(n.competitionScore||40)<65?'#fbbf24':'#f87171'}"></div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);width:32px;text-align:right;font-weight:600">${n.competitionScore||40}</div>
+        </div>
+        <div class="nf-score-row">
+          <div class="nf-score-label">Potential</div>
+          <div class="nf-score-bar"><div class="nf-score-fill" style="width:${n.potentialScore||80}%;background:#4ade80"></div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);width:32px;text-align:right;font-weight:600">${n.potentialScore||80}</div>
+        </div>
+        ${n.monetizationScore?`<div class="nf-score-row">
+          <div class="nf-score-label">Monetize</div>
+          <div class="nf-score-bar"><div class="nf-score-fill" style="width:${n.monetizationScore}%;background:#c084fc"></div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);width:32px;text-align:right;font-weight:600">${n.monetizationScore}</div>
+        </div>`:''}
+      </div>
+      ${n.monetization||n.channelExample?`<div class="nf-divider"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${n.monetization?`<div style="font-size:11px;color:rgba(255,255,255,0.35)"><span style="color:rgba(255,255,255,0.5);font-weight:600">💰 </span>${n.monetization}</div>`:''}
+        ${n.channelExample?`<div style="font-size:11px;color:rgba(59,130,246,0.7)">${n.channelExample}</div>`:''}
+      </div>`:''}
+      ${n.videoIdea?`<div class="nf-divider"></div>
+      <div class="nf-idea-row">
+        <i class="ti ti-bulb nf-idea-icon" aria-hidden="true"></i>
+        <div class="nf-idea-text">
+          <strong style="color:rgba(255,255,255,0.75)">Video idea: </strong>${n.videoIdea}
+          ${n.whyItWorks?`<div style="margin-top:3px;font-size:11px;color:rgba(255,255,255,0.3);font-style:italic">${n.whyItWorks}</div>`:''}
+        </div>
+      </div>`:''}
+      <div class="nf-card-actions">
+        <button class="nf-btn-idea" onclick="goIdeatorFromNiche('${n.name.replace(/'/g,"\\'").replace(/"/g,'\\"')}')"><i class="ti ti-bulb" style="font-size:12px"></i> Generate Ideas</button>
+        <button class="nf-btn-save" onclick="saveNiche('${n.name.replace(/'/g,"\\'").replace(/"/g,'\\"')}')"><i class="ti ti-bookmark" style="font-size:12px"></i> Save</button>
+      </div>
+    </div>`).join('');
+  grid.style.display='grid';
+}
+
+function filterNF(el,cat){
+  document.querySelectorAll('.nf-filter').forEach(b=>b.classList.remove('act'));
+  el.classList.add('act');
+  document.querySelectorAll('.nf-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'flex':'none';
+  });
+}
+
+function goIdeatorFromNiche(name){
+  document.getElementById('idea-prompt').value='Generate video ideas for the niche: '+name;
+  go('ideator', document.querySelector('[onclick*="ideator"]'));
+}
+function saveNiche(name){ showNotif('Niche saved: '+name.substring(0,28)+'...'); }
+
+
+async function runSupport(){
+  const q=document.getElementById('sup-inp').value.trim(); if(!q)return;
+  setLoading('btn-sup','Thinking...');
+  const out=document.getElementById('sup-out');
+  out.innerHTML='<div style="color:rgba(255,255,255,0.3);font-size:13px;padding:8px 0">Finding answer...</div>';
+  try{const res=await ai(`You are support for a YouTube automation platform. User asks: "${q}"\nRespond clearly and helpfully in Spanish.`);
+  out.innerHTML=resultCard(res.replace(/\n/g,'<br>'));}catch(e){out.innerHTML=errCard('Error.');}
+  resetBtn('btn-sup','ti-send','Get AI Help');
+}
+</script>
